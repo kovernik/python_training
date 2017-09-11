@@ -1,4 +1,5 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
+from user import User
 import unittest
 
 
@@ -20,9 +21,10 @@ class test_add_user(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_user(wd, name="Name", surname="Last name", email="kovernik@softbalance.ru", mobile="+79110000000",
-                         phone="+78120001110", company="SoftBalance", address="Shaumyana, 55", middle="Middle",
-                         nickname="nickname")
+        self.create_user(wd,
+                         User(name="Name", surname="Last name", email="kovernik@softbalance.ru", mobile="+79110000000",
+                               phone="+78120001110", company="SoftBalance", address="Shaumyana, 55", middle="Middle",
+                               nickname="nickname"))
         self.logout(wd)
         self.assertTrue(success)
 
@@ -31,8 +33,9 @@ class test_add_user(unittest.TestCase):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.create_user(wd, name="", surname="", email="", mobile="", phone="", company="", address="", middle="",
-                         nickname="")
+        self.create_user(wd,
+                         User(name="", surname="", email="", mobile="", phone="", company="", address="", middle="",
+                               nickname=""))
         self.logout(wd)
         self.assertTrue(success)
 
@@ -48,38 +51,38 @@ class test_add_user(unittest.TestCase):
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def create_user(self, wd, name, surname, email, mobile, phone, company, address, middle, nickname):
+    def create_user(self, wd, user):
         # init user creation
         wd.find_element_by_link_text("add new").click()
         # fill user form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(name)
+        wd.find_element_by_name("firstname").send_keys(user.name)
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(surname)
+        wd.find_element_by_name("lastname").send_keys(user.surname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(nickname)
+        wd.find_element_by_name("nickname").send_keys(user.nickname)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(middle)
+        wd.find_element_by_name("middlename").send_keys(user.middle)
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("address").click()
         wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(address)
+        wd.find_element_by_name("address").send_keys(user.address)
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(company)
+        wd.find_element_by_name("company").send_keys(user.company)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(phone)
+        wd.find_element_by_name("home").send_keys(user.phone)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(mobile)
+        wd.find_element_by_name("mobile").send_keys(user.mobile)
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(email)
+        wd.find_element_by_name("email").send_keys(user.email)
         # submit user creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
