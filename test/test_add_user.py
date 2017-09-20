@@ -1,5 +1,4 @@
 import pytest
-
 from fixture.user_application import User_application
 from user import User
 
