@@ -1,6 +1,7 @@
-from user import User
-from user_application import User_application
 import pytest
+
+from fixture.user_application import User_application
+from user import User
 
 
 @pytest.fixture
