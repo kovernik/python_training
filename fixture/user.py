@@ -74,3 +74,9 @@ class UserHelper:
         # submit user modify
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
 
+    def delete(self):
+        wd = self.app.wd
+        # select user
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        # submit delete
+        wd.switch_to_alert().accept()
