@@ -1,4 +1,4 @@
-from user import User
+from model.user import User
 
 
 def test_add_user(app):
