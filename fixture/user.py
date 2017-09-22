@@ -40,9 +40,10 @@ class UserHelper:
 
     def modify(self, user):
         wd = self.app.wd
-        # init user modify
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[36]/td[8]/a/img").click()
+        # select first user
+        wd.find_element_by_name("selected[]").click()
         # fill user form
+        wd.find_element_by_xpath("//img[@title='Edit']").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(user.name)
@@ -76,7 +77,9 @@ class UserHelper:
 
     def delete(self):
         wd = self.app.wd
-        # select user
-        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        # select first user
+        wd.find_element_by_name("selected[]").click()
         # submit delete
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
+        self.app.open_home_page()
