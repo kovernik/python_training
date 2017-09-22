@@ -4,6 +4,7 @@ class UserHelper:
 
     def create(self, user):
         wd = self.app.wd
+        self.app.open_home_page()
         # init user creation
         wd.find_element_by_link_text("add new").click()
         # fill user form
@@ -40,6 +41,7 @@ class UserHelper:
 
     def modify(self, user):
         wd = self.app.wd
+        self.app.open_home_page()
         # select first user
         wd.find_element_by_name("selected[]").click()
         # fill user form
@@ -77,6 +79,7 @@ class UserHelper:
 
     def delete(self):
         wd = self.app.wd
+        self.app.open_home_page()
         # select first user
         wd.find_element_by_name("selected[]").click()
         # submit delete
