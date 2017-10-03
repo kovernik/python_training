@@ -95,11 +95,11 @@ class UserHelper:
         self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    def get_user_list(self):
+    def get_user_list(self, cells):
         wd = self.app.wd
         self.app.open_home_page()
         users = []
-        for element in wd.find_elements_by_name("vCard"):
+        for element in cells[0].find_element_by_name("selected[]").get_attribute("value"):
             text = element.text
             id = element.find_element_by_name("selected[]").get_attribute("value")
             users.append(User(name=text, id=id))
