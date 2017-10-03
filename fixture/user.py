@@ -99,7 +99,7 @@ class UserHelper:
         wd = self.app.wd
         self.app.open_home_page()
         users = []
-        for element in wd.find_elements_by_css_selector("td.center"):
+        for element in wd.find_elements_by_name("vCard"):
             text = element.text
             id = element.find_element_by_name("selected[]").get_attribute("value")
             users.append(User(name=text, id=id))
