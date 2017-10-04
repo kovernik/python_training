@@ -1,3 +1,6 @@
+from model.user import User
+
+
 class UserHelper:
     def __init__(self, app):
         self.app = app
@@ -89,5 +92,16 @@ class UserHelper:
 
     def count(self):
         wd = self.app.wd
-        self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_user_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        user = []
+        for element in wd.find_elements_by_css_selector("tr[name=entry]"):
+            cells = element.find_elements_by_tag_name("td")
+            id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+            name = cells[2].text
+            surname = cells[1].text
+            user.append(User(id=id, name=name, surname=surname))
+        return user
