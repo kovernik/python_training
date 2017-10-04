@@ -42,6 +42,19 @@ class UserHelper:
         # submit user creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
+
+    def fill_contact_form(self, address):
+        wd = self.app.wd
+        self.change_field_value("firstname", address.firstname)
+        self.change_field_value("middlename", address.middlename)
+        self.change_field_value("lastname", address.lastname)
+        self.change_field_value("title", address.title)
+        self.change_field_value("nickname", address.nickname)
+        self.change_field_value("company", address.company)
+        self.change_field_value("home", address.home)
+        self.change_field_value("email", address.email)
+        self.change_field_value("address2", address.address)
+
     def modify(self, user):
         wd = self.app.wd
         self.app.open_home_page()
@@ -89,6 +102,14 @@ class UserHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.app.open_home_page()
+
+    def modify_first_user(self, new_user_data):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        self.fill_user_form(new_user_data)
+        wd.find_element_by_name("update").click()
+        self.app.open_home_pagereturn_to_home_page()
 
     def count(self):
         wd = self.app.wd

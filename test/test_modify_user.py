@@ -7,7 +7,7 @@ def test_modify_user(app):
     old_user = app.user.get_user_list()
     user = User(name="new_name1")
     user.id = old_user[0].id
-    app.user.modify(user)
+    app.user.modify_first_user(user)
     new_user = app.user.get_user_list()
     assert len(old_user) == len(new_user)
     old_user[0] = user
