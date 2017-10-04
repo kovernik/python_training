@@ -19,10 +19,6 @@ class User:
         return "%s:%s" % (self.id, self.name)
 
     def __eq__(self, other):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f68a58edeca5c96b09c492e3558e5b7d9f8f3fb9
         return (self.id is None or other.id is None or self.id == other.id) and self.name == other.name
 
     def id_or_max(self):
@@ -30,9 +26,3 @@ class User:
             return int(self.id)
         else:
             return maxsize
-<<<<<<< HEAD
-=======
-=======
-        return self.id == other.id and self.name == other.name
->>>>>>> c8e04c222356b95426d33d47a7b22fd59ac42272
->>>>>>> f68a58edeca5c96b09c492e3558e5b7d9f8f3fb9

@@ -13,20 +13,19 @@ class UserHelper:
         # submit user creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-<<<<<<< HEAD
     def open_user_creation_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
     def fill_user_form(self, user):
         wd = self.app.wd
-        self.change_field_value("name", user.name)
-        self.change_field_value("surname", user.surname)
+        self.change_field_value("firstname", user.name)
+        self.change_field_value("lastname", user.surname)
         self.change_field_value("nickname", user.nickname)
-        self.change_field_value("middle", user.middle)
+        self.change_field_value("middlename", user.middle)
         self.change_field_value("address", user.address)
         self.change_field_value("company", user.company)
-        self.change_field_value("phone", user.phone)
+        self.change_field_value("home", user.phone)
         self.change_field_value("mobile", user.mobile)
         self.change_field_value("email", user.email)
 
@@ -38,22 +37,6 @@ class UserHelper:
             wd.find_element_by_name(field_form).send_keys(text)
 
     def modify_first_contact(self, new_contact_data):
-=======
-
-    def fill_contact_form(self, address):
-        wd = self.app.wd
-        self.change_field_value("firstname", address.firstname)
-        self.change_field_value("middlename", address.middlename)
-        self.change_field_value("lastname", address.lastname)
-        self.change_field_value("title", address.title)
-        self.change_field_value("nickname", address.nickname)
-        self.change_field_value("company", address.company)
-        self.change_field_value("home", address.home)
-        self.change_field_value("email", address.email)
-        self.change_field_value("address2", address.address)
-
-    def modify(self, user):
->>>>>>> f68a58edeca5c96b09c492e3558e5b7d9f8f3fb9
         wd = self.app.wd
         self.app.open_home_page()
         # select first contact
@@ -74,34 +57,10 @@ class UserHelper:
         wd.switch_to_alert().accept()
         self.app.open_home_page()
 
-    def modify_first_user(self, new_user_data):
-        wd = self.app.wd
-<<<<<<< HEAD
-        return len(wd.find_elements_by_name("selected[]"))
-
-    def get_user_list(self):
-        wd = self.app.wd
-        self.app.open_home_page()
-        user = []
-        for element in wd.find_elements_by_css_selector("tr[name=entry]"):
-            cells = element.find_elements_by_tag_name("td")
-            id = cells[0].find_element_by_name("selected[]").get_attribute("value")
-            name = cells[2].text
-            surname = cells[1].text
-            user.append(User(id=id, name=name, surname=surname))
-        return user
-=======
-        self.app.open_home_page()
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
-        self.fill_user_form(new_user_data)
-        wd.find_element_by_name("update").click()
-        self.app.open_home_pagereturn_to_home_page()
-
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
 
-<<<<<<< HEAD
     def get_user_list(self):
         wd = self.app.wd
         self.app.open_home_page()
@@ -113,15 +72,3 @@ class UserHelper:
             surname = cells[1].text
             user.append(User(id=id, name=name, surname=surname))
         return user
-=======
-    def get_user_list(self, cells):
-        wd = self.app.wd
-        self.app.open_home_page()
-        users = []
-        for element in cells[0].find_element_by_name("selected[]").get_attribute("value"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            users.append(User(name=text, id=id))
-        return users
->>>>>>> c8e04c222356b95426d33d47a7b22fd59ac42272
->>>>>>> f68a58edeca5c96b09c492e3558e5b7d9f8f3fb9
