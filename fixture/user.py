@@ -115,6 +115,7 @@ class UserHelper:
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
 
+<<<<<<< HEAD
     def get_user_list(self):
         wd = self.app.wd
         self.app.open_home_page()
@@ -126,3 +127,14 @@ class UserHelper:
             surname = cells[1].text
             user.append(User(id=id, name=name, surname=surname))
         return user
+=======
+    def get_user_list(self, cells):
+        wd = self.app.wd
+        self.app.open_home_page()
+        users = []
+        for element in cells[0].find_element_by_name("selected[]").get_attribute("value"):
+            text = element.text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            users.append(User(name=text, id=id))
+        return users
+>>>>>>> c8e04c222356b95426d33d47a7b22fd59ac42272
