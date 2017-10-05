@@ -37,13 +37,20 @@ class UserHelper:
             wd.find_element_by_name(field_form).clear()
             wd.find_element_by_name(field_form).send_keys(text)
 
-    def modify_first_contact(self, new_contact_data):
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+
+    def select_modify_user(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("//img[@title='Edit']")[index].click()
+
+    def modify_user_by_index(self, index, user):
         wd = self.app.wd
         self.app.open_home_page()
-        # select first contact
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        self.select_modify_user(index)
         # fill contact form
-        self.fill_user_form(new_contact_data)
+        self.fill_user_form(user)
         # update contact
         wd.find_element_by_name("update").click()
         self.app.open_home_page()
