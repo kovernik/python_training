@@ -50,10 +50,20 @@ class UserHelper:
         self.user_cache = None
 
     def delete(self):
+        self.delete_user_by_index(0)
+
+    def select_first_user(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+
+    def select_user_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def delete_user_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
-        # select first user
-        wd.find_element_by_name("selected[]").click()
+        self.select_user_by_index(index)
         # submit delete
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
