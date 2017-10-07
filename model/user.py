@@ -2,13 +2,15 @@ from sys import maxsize
 
 
 class User:
-    def __init__(self, name=None, surname=None, email=None, mobile=None, phone=None, company=None, address=None,
-                 middle=None, nickname=None, id=None):
+    def __init__(self, name=None, surname=None, email=None, mobilephone=None, homephone=None, workphone=None,
+                 secondaryphone=None, company=None, address=None, middle=None, nickname=None, id=None):
         self.name = name
         self.surname = surname
         self.email = email
-        self.mobile = mobile
-        self.phone = phone
+        self.mobilephone = mobilephone
+        self.homephone = homephone
+        self.workphone = workphone
+        self.secondaryphone = secondaryphone
         self.company = company
         self.address = address
         self.middle = middle
