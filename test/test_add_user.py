@@ -3,7 +3,7 @@ from model.user import User
 
 def test_add_user(app):
     old_user = app.user.get_user_list()
-    user = User(name="Name", surname="Last name", email="kovernik@softbalance.ru", mobilephone="+79110000000",
+    user = User(firstname="Name", lastname="Last name", email="kovernik@softbalance.ru", mobilephone="+79110000000",
                 homephone="+78120001110", company="SoftBalance", address="Shaumyana, 55", middle="Middle",
                 nickname="nickname")
     app.user.create(user)

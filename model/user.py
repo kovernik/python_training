@@ -2,10 +2,10 @@ from sys import maxsize
 
 
 class User:
-    def __init__(self, name=None, surname=None, email=None, mobilephone=None, homephone=None, workphone=None,
+    def __init__(self, firstname=None, lastname=None, email=None, mobilephone=None, homephone=None, workphone=None,
                  secondaryphone=None, company=None, address=None, middle=None, nickname=None, id=None):
-        self.name = name
-        self.surname = surname
+        self.firstname = firstname
+        self.lastname = lastname
         self.email = email
         self.mobilephone = mobilephone
         self.homephone = homephone
@@ -18,10 +18,10 @@ class User:
         self.id = id
 
     def __repr__(self):
-        return "%s:%s:%s" % (self.id, self.name, self.surname)
+        return "%s:%s:%s" % (self.id, self.firstname, self.lastname)
 
     def __eq__(self, other):
-        return (self.id is None or other.id is None or self.id == other.id) and self.name == other.name
+        return (self.id is None or other.id is None or self.id == other.id) and self.firstname == other.firstname
 
     def id_or_max(self):
         if self.id:

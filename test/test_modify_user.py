@@ -4,10 +4,10 @@ from random import randrange
 
 def test_modify_user(app):
     if app.user.count() == 0:
-        app.user.create(User(name="Mikhail"))
+        app.user.create(User(firstname="Mikhail"))
     old_users = app.user.get_user_list()
     index = randrange(len(old_users))
-    user = User(name="new_name1")
+    user = User(firstname="new_name1")
     user.id = old_users[index].id
     app.user.modify_user_by_index(index, user)
     new_users = app.user.get_user_list()

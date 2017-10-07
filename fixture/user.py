@@ -20,8 +20,8 @@ class UserHelper:
 
     def fill_user_form(self, user):
         wd = self.app.wd
-        self.change_field_value("firstname", user.name)
-        self.change_field_value("lastname", user.surname)
+        self.change_field_value("firstname", user.firstname)
+        self.change_field_value("lastname", user.lastname)
         self.change_field_value("nickname", user.nickname)
         self.change_field_value("middlename", user.middle)
         self.change_field_value("address", user.address)
@@ -93,6 +93,6 @@ class UserHelper:
                 cells = element.find_elements_by_tag_name("td")
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
                 name = cells[2].text
-                surname = cells[1].text
-                self.user_cache.append(User(id=id, name=name, surname=surname))
+                lastname = cells[1].text
+                self.user_cache.append(User(id=id, firstname=name, lastname=lastname))
         return list(self.user_cache)
