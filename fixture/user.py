@@ -89,10 +89,24 @@ class UserHelper:
             wd = self.app.wd
             self.app.open_home_page()
             self.user_cache = []
-            for element in wd.find_elements_by_css_selector("tr[name=entry]"):
-                cells = element.find_elements_by_tag_name("td")
+            for row in wd.find_elements_by_name("entry"):
+                cells = row.find_elements_by_tag_name("td")
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
-                name = cells[2].text
+                firstname = cells[2].text
                 lastname = cells[1].text
-                self.user_cache.append(User(id=id, firstname=name, lastname=lastname))
+                self.user_cache.append(User(id=id, firstname=firstname, lastname=lastname))
         return list(self.user_cache)
+
+    def open_user_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_element_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_dy_tag_name("a").click()
+
+    def open_user_view_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_element_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[6]
+        cell.find_element_dy_tag_name("a").click()
